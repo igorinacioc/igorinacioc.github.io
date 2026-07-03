@@ -1,0 +1,14 @@
+[build]
+  command = "hugo mod tidy && hugo --gc --minify"
+  publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.156.0"
+  HUGO_ENV = "production"
+  GO_VERSION = "1.24"
+
+[context.deploy-preview]
+  command = "hugo mod tidy && hugo --gc --minify --buildDrafts --buildFuture"
+
+[context.branch-deploy]
+  command = "hugo mod tidy && hugo --gc --minify --buildDrafts --buildFuture"

@@ -1,0 +1,114 @@
+/* Custom styles for Igor Inácio portfolio */
+
+/* Project cards grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Feature cards on homepage */
+.hextra-feature-card {
+  width: 280px;
+  max-width: 100%;
+}
+
+/* KPI-style cards */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.kpi-card {
+  text-align: center;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+}
+
+.dark .kpi-card {
+  border-color: #374151;
+}
+
+.kpi-card .number {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary-600);
+}
+
+.kpi-card .label {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+/* Architecture diagram boxes */
+.arch-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.arch-box {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid;
+}
+
+.arch-box.blue {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.arch-box.green {
+  border-color: #10b981;
+  background: #ecfdf5;
+}
+
+.arch-box.purple {
+  border-color: #8b5cf6;
+  background: #f5f3ff;
+}
+
+.dark .arch-box.blue {
+  background: #1e3a5f;
+}
+
+.dark .arch-box.green {
+  background: #064e3b;
+}
+
+.dark .arch-box.purple {
+  background: #2d1f4e;
+}
+
+/* Try-it section */
+.try-it-box {
+  border: 2px solid #10b981;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+}
+
+.dark .try-it-box {
+  background: linear-gradient(135deg, #022c22, #064e3b);
+  border-color: #34d399;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  .hextra-feature-card {
+    width: 100%;
+  }
+  .kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
