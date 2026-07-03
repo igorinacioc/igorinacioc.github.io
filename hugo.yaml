@@ -2,6 +2,14 @@
 title: Igor Inácio
 baseURL: https://igorinacioc.github.io/
 
+author:
+  name: Igor Inácio
+  email: igorinaciocorreia@gmail.com
+
+# Disable RSS until blog has posts
+disableKinds:
+  - RSS
+
 module:
   imports:
     - path: github.com/imfing/hextra
