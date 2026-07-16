@@ -3,35 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Igor Inácio — Finanças, Contabilidade & Aprendizado</title>
+  <title>Igor Inácio</title>
   <link rel="stylesheet" href="/public/style.css">
 </head>
 <body>
-  <header>
-    <h1><a href="/">Igor Inácio</a></h1>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/sobre">Sobre</a>
-      <a href="https://github.com/igorinacioc/second-brain">Segundo Cérebro</a>
+  <header id="header">
+    <div class="header-top">
+      <h1><a href="/">Igor Inácio</a></h1>
+      <span class="lang-pills"><a href="/" class="active">PT</a> · <a href="/en">EN</a></span>
+    </div>
+    <nav class="tabs">
+      <a href="#" class="tab active" data-tab="posts">Posts</a>
+      <a href="#" class="tab" data-tab="projetos">Projetos</a>
+      <a href="#" class="tab" data-tab="sobre">Sobre</a>
+      <span class="nav-right">
+        <a href="https://github.com/igorinacioc">GitHub ↗</a>
+        <a href="/rss.xml">RSS</a>
+        <button id="search-trigger" title="Buscar">CTRL K</button>
+        <span class="theme-toggles">
+          <button data-theme="light" class="active">Claro</button>
+          <button data-theme="dark">Escuro</button>
+          <button data-theme="system">System</button>
+        </span>
+      </span>
     </nav>
   </header>
 
   <main>
-    <p>Profissional de controladoria e finanças com 13 anos de carreira.
-    Escrevo sobre análise financeira, banking, tecnologia e aprendizado.</p>
+    <!-- TAB: Posts -->
+    <section id="tab-posts" class="tab-content active">
+      <div id="posts-list">
+        <p class="empty">Nenhum post ainda. <a href="https://github.com/igorinacioc/second-brain">Escreva o primeiro pelo vault</a>.</p>
+      </div>
+    </section>
 
-    <p>Este blog é o output público do meu
-    <a href="https://github.com/igorinacioc/second-brain">Segundo Cérebro</a> —
-    um sistema de conhecimento pessoal que conecta leitura, retenção e aplicação.</p>
+    <!-- TAB: Projetos -->
+    <section id="tab-projetos" class="tab-content">
+      <div id="projetos-list">
+        <p class="empty">Projetos em breve.</p>
+      </div>
+    </section>
 
-    <h2>Posts</h2>
-    <ul class="post-list" id="post-list">
-      <li>Nenhum post ainda. <a href="https://github.com/igorinacioc/second-brain">Escreva o primeiro pelo vault.</a></li>
-    </ul>
+    <!-- TAB: Sobre -->
+    <section id="tab-sobre" class="tab-content">
+      <p>Profissional de controladoria e finanças com 13 anos de carreira.
+      Escrevo sobre análise financeira, banking, tecnologia e aprendizado.</p>
+
+      <p>Este blog é o output público do meu
+      <a href="https://github.com/igorinacioc/second-brain">Segundo Cérebro</a>
+      — um sistema de conhecimento pessoal que conecta leitura, retenção e aplicação.</p>
+
+      <h2>Como funciona</h2>
+      <ol>
+        <li><strong>Leio</strong> artigos, livros e aulas sobre finanças, contabilidade, banking, tecnologia e carreira</li>
+        <li><strong>Processo</strong> no vault: crio páginas atômicas, conecto ideias, identifico padrões</li>
+        <li><strong>Escrevo</strong> sobre o que aprendi — esse texto vira um post aqui</li>
+        <li><strong>Revisito</strong> via newsletter semanal com quiz e desafios</li>
+      </ol>
+
+      <h2>Temas</h2>
+      <ul>
+        <li>Demonstrativos financeiros (DRE, Balanço, DFC)</li>
+        <li>Análise financeira (EBITDA, alavancagem, capital de giro)</li>
+        <li>Banking e risco (Basileia, crédito, mercado)</li>
+        <li>Tecnologia aplicada a finanças (AI, dados, automação)</li>
+        <li>Carreira e aprendizado</li>
+      </ul>
+    </section>
+
+    <!-- Search overlay -->
+    <div id="search-overlay" class="hidden">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Buscar posts..." autofocus>
+        <div id="search-results"></div>
+      </div>
+    </div>
   </main>
 
   <footer>
-    <small>Gerado pelo <a href="https://github.com/igorinacioc/second-brain">Segundo Cérebro</a></small>
+    <span class="theme-toggles">
+      <button data-theme="light">Claro</button>
+      <button data-theme="dark">Escuro</button>
+      <button data-theme="system">System</button>
+    </span>
+    <small>© 2026 Igor Inácio</small>
   </footer>
+
+  <script>
+    // Theme
+    const theme = localStorage.getItem('theme') || 'system';
+    applyTheme(theme);
+
+    document.querySelectorAll('[data-theme]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const t = btn.dataset.theme;
+        localStorage.setItem('theme', t);
+        applyTheme(t);
+        document.querySelectorAll('[data-theme]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    function applyTheme(t) {
+      if (t === 'system') {
+        document.documentElement.setAttribute('data-theme',
+          window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+      document.querySelectorAll('[data-theme]').forEach(b => b.classList.remove('active'));
+      const active = document.querySelector(`[data-theme="${t}"]`);
+      if (active) active.classList.add('active');
+    }
+
+    // Tabs
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+        history.replaceState(null, '', tab.dataset.tab === 'posts' ? '/' : '/' + tab.dataset.tab);
+      });
+    });
+
+    // Deep link: /sobre, /projetos
+    const path = window.location.pathname.replace('/', '');
+    if (path === 'sobre' || path === 'projetos') {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelector(`.tab[data-tab="${path}"]`)?.classList.add('active');
+      document.getElementById('tab-' + path)?.classList.add('active');
+    }
+
+    // Search
+    document.getElementById('search-trigger').addEventListener('click', () => {
+      document.getElementById('search-overlay').classList.remove('hidden');
+      document.getElementById('search-input').focus();
+    });
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        document.getElementById('search-overlay').classList.remove('hidden');
+        document.getElementById('search-input').focus();
+      }
+      if (e.key === 'Escape') {
+        document.getElementById('search-overlay').classList.add('hidden');
+      }
+    });
+    document.getElementById('search-overlay').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) e.currentTarget.classList.add('hidden');
+    });
+    document.getElementById('search-input').addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      const results = document.getElementById('search-results');
+      if (q.length < 2) { results.innerHTML = ''; return; }
+      // Client-side search across post titles (populated by sync script)
+      const posts = document.querySelectorAll('.post-item');
+      const matches = [];
+      posts.forEach(p => {
+        const title = p.querySelector('.post-title')?.textContent || '';
+        if (title.toLowerCase().includes(q)) {
+          matches.push(p.cloneNode(true));
+        }
+      });
+      results.innerHTML = matches.length
+        ? matches.map(m => m.outerHTML).join('')
+        : '<p class="empty">Nada encontrado.</p>';
+    });
+  </script>
 </body>
 </html>
