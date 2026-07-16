@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema Orcamentario Hospitalar — Igor Inacio</title>
+  <link rel="stylesheet" href="/public/style.css">
+  <style>
+    .project-header { margin-bottom: 2rem; }
+    .project-header h1 { font-size: 1.8rem; margin-bottom: 0.5rem; line-height: 1.3; }
+    .project-header .meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; }
+    .project-header .meta a { color: var(--accent); }
+    .back-link { font-size: 0.85rem; margin-bottom: 2rem; display: block; }
+    article h2 { font-size: 1.25rem; margin: 2.5rem 0 0.75rem; }
+    article h3 { font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
+    article pre { background: var(--bg-secondary); padding: 1rem; border-radius: var(--radius); overflow-x: auto; font-size: 0.82rem; line-height: 1.5; }
+    article code { font-family: var(--font-mono); font-size: 0.85em; }
+    article table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    article th, article td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; font-size: 0.9rem; }
+    article th { background: var(--bg-secondary); font-weight: 600; }
+    article blockquote { border-left: 3px solid var(--accent); margin: 1rem 0; padding: 0.5rem 1rem; color: var(--text-muted); font-style: italic; }
+    .kpi-row { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+    .kpi-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; min-width: 100px; text-align: center; }
+    .kpi-card .number { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+    .kpi-card .label { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="header-top">
+      <h1><a href="/">Igor Inacio</a></h1>
+    </div>
+    <nav class="tabs">
+      <a href="/" class="tab">Posts</a>
+      <a href="/projetos" class="tab active">Projetos</a>
+      <a href="/sobre" class="tab">Sobre</a>
+      <span class="nav-right">
+        <a href="https://github.com/igorinacioc">GitHub</a>
+      </span>
+    </nav>
+  </header>
+
+  <main>
+    <a href="/projetos" class="back-link">← Projetos</a>
+
+    <article>
+      <div class="project-header">
+        <h1>Sistema Orcamentario Hospitalar</h1>
+        <div class="meta">
+          Junho 2026 · Status: <strong>Em desenvolvimento</strong> ·
+          <a href="https://github.com/igorinacioc/orcamento-portfolio">Codigo no GitHub</a>
+        </div>
+      </div>
+
+      <h2>A origem</h2>
+      <p>Trabalho ha anos com controle orcamentario hospitalar usando Excel, ERP Tasy e BI WeKnow. O processo era manual: importar planilhas, consolidar centros de custo, conferir desvios, gerar apresentacao. <strong>71 centros de custo, R$ 140 milhoes em despesas anuais.</strong> Planilha nao escala.</p>
+      <p>Aprendi Python e SQL para resolver meu proprio problema. O resultado: um sistema que automatiza o que eu fazia manualmente.</p>
+
+      <h2>O que o sistema faz</h2>
+      <pre>┌──────────────────────────────────────────────────────┐
+│  MODULO ORCAMENTO (SQLite)                            │
+│  ┌──────────┐  ┌──────────┐  ┌──────────────────┐   │
+│  │ Import   │  │ Liberacao│  │ Tratativas        │   │
+│  │ Excel    │→ │ CC x Mes │→ │ (comentarios,      │   │
+│  │ (upsert) │  │          │  │  anexos, SLA)      │   │
+│  └──────────┘  └──────────┘  └──────────────────┘   │
+├──────────────────────────────────────────────────────┤
+│  MODULO OPERADORAS (DuckDB + dbt)                     │
+│  ┌──────────┐  ┌──────────┐  ┌──────────────────┐   │
+│  │ CSVs     │  │ dbt (29  │  │ Dashboards        │   │
+│  │ (3 CHDAs)│→ │ modelos) │→ │ (rentabilidade,   │   │
+│  │          │  │          │  │  cirurgia, OPME)   │   │
+│  └──────────┘  └──────────┘  └──────────────────┘   │
+└──────────────────────────────────────────────────────┘</pre>
+
+      <h2>Stack — por que essas escolhas</h2>
+      <table>
+        <tr><th>Tecnologia</th><th>Por que usei</th></tr>
+        <tr><td><strong>Django</strong></td><td>Framework web completo em Python — admin, auth, ORM</td></tr>
+        <tr><td><strong>DuckDB</strong></td><td>Banco OLAP embarcado, zero infra — analise pesada local</td></tr>
+        <tr><td><strong>dbt</strong></td><td>Transformacao de dados com testes — 385 testes de qualidade</td></tr>
+        <tr><td><strong>Chart.js</strong></td><td>Graficos interativos sem dependencia paga</td></tr>
+        <tr><td><strong>HTMX</strong></td><td>Atualizacoes dinamicas sem JavaScript complexo</td></tr>
+        <tr><td><strong>SQLite</strong></td><td>Banco simples para dados transacionais (orcamento)</td></tr>
+      </table>
+
+      <blockquote>Aprendi essas tecnologias do zero, fora do horario de trabalho. Tudo esta documentado no GitHub e neste blog.</blockquote>
+
+      <h2>Funcionalidades que substituem planilhas</h2>
+      <ul>
+        <li><strong>Importacao Excel automatizada</strong> — upsert inteligente que reconhece centro de custo, conta contabil e competencia</li>
+        <li><strong>Dashboards por operadora</strong> — rentabilidade por convenio que o ERP nao entrega</li>
+        <li><strong>Tratativas integradas</strong> — comentarios, anexos e SLA para desvios orcamentarios (antes: e-mail e WhatsApp)</li>
+        <li><strong>Pipeline dbt</strong> — transformacao de CSVs hospitalares em modelos analiticos, com rastreabilidade</li>
+        <li><strong>Alertas automaticos</strong> — e-mail quando um CC estoura o orcamento</li>
+      </ul>
+
+      <h2>Numeros (com dados sinteticos)</h2>
+      <div class="kpi-row">
+        <div class="kpi-card"><div class="number">45K</div><div class="label">lancamentos</div></div>
+        <div class="kpi-card"><div class="number">29</div><div class="label">modelos dbt</div></div>
+        <div class="kpi-card"><div class="number">385</div><div class="label">testes de qualidade</div></div>
+        <div class="kpi-card"><div class="number">7</div><div class="label">dashboards</div></div>
+      </div>
+
+      <h2>Como testar</h2>
+      <p>Sao 2 comandos:</p>
+      <pre>git clone https://github.com/igorinacioc/orcamento-portfolio.git
+cd orcamento-portfolio
+
+# Gerar dados + importar + dbt + servidor
+python synthetic_data/generators/gen_operadoras.py
+cp -r synthetic_data/output/operadoras/Exemplo/* operadoras_data/Exemplo/
+cd operadoras_data && python importar.py && cd operadoras && dbt run && cd ../..
+python manage.py runserver 0.0.0.0:8001</pre>
+
+      <p>Login:</p>
+      <table>
+        <tr><th>Usuario</th><th>Senha</th><th>Perfil</th></tr>
+        <tr><td><code>admin</code></td><td><code>admin</code></td><td>Controladoria (acesso total)</td></tr>
+        <tr><td><code>gestor</code></td><td><code>gestor123</code></td><td>Visao do gestor de CC</td></tr>
+        <tr><td><code>diretoria</code></td><td><code>dir123</code></td><td>Visao consolidada</td></tr>
+      </table>
+
+      <p><strong>Requisitos:</strong> Python 3.10+, DuckDB, dbt-duckdb.</p>
+    </article>
+  </main>
+
+  <footer><small>&copy; 2026 Igor Inacio</small></footer>
+</body>
+</html>
