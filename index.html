@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-visual-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Igor Inácio</title>
+  <title>Igor Inacio</title>
   <link rel="stylesheet" href="/public/style.css">
 </head>
 <body>
   <header id="header">
     <div class="header-top">
-      <h1><a href="/">Igor Inácio</a></h1>
+      <h1><a href="/">Igor Inacio</a></h1>
+      <select id="visual-theme" title="Tema visual do blog">
+        <option value="light">Claro</option>
+        <option value="sepia">Sepia</option>
+        <option value="dark">Escuro</option>
+      </select>
     </div>
     <nav class="tabs">
       <a href="#" class="tab active" data-tab="posts">Posts</a>
       <a href="#" class="tab" data-tab="projetos">Projetos</a>
       <a href="#" class="tab" data-tab="sobre">Sobre</a>
       <span class="nav-right">
-        <a href="https://github.com/igorinacioc">GitHub ↗</a>
-        <a href="/rss.xml">RSS</a>
-        <button id="search-trigger" title="Buscar">CTRL K</button>
-        <span class="theme-toggles">
-          <button data-theme="light" class="active">Claro</button>
-          <button data-theme="dark">Escuro</button>
-          <button data-theme="system">System</button>
-        </span>
+        <a href="https://github.com/igorinacioc">GitHub</a>
+        <button id="search-trigger" title="Buscar (CTRL+K)">Buscar</button>
       </span>
     </nav>
   </header>
@@ -39,33 +38,65 @@
     <!-- TAB: Projetos -->
     <section id="tab-projetos" class="tab-content">
       <div id="projetos-list">
-        <p class="empty">Projetos em breve.</p>
+        <article class="project-item">
+          <h3><a href="https://github.com/igorinacioc/orcamento-portfolio">Sistema Orcamentario Hospitalar</a></h3>
+          <p>Automacao de controle orcamentario: 71 centros de custo, R$ 140 milhoes em despesas anuais. Substitui Excel + ERP Tasy por Django + DuckDB + dbt + Chart.js.</p>
+          <div class="project-meta">
+            <span class="post-tag">Django</span>
+            <span class="post-tag">DuckDB</span>
+            <span class="post-tag">dbt</span>
+            <span class="post-tag">Python</span>
+            <span class="post-tag">Controladoria</span>
+            <span class="status">Em desenvolvimento</span>
+          </div>
+        </article>
+        <article class="project-item">
+          <h3><a href="https://github.com/igorinacioc/orcamento-portfolio">Pipeline Analitico com dbt</a></h3>
+          <p>Integracao de 3 fontes de dados hospitalares (CSV, Windows-1252) usando dbt + DuckDB. Analise de rentabilidade por operadora que antes levava horas.</p>
+          <div class="project-meta">
+            <span class="post-tag">dbt</span>
+            <span class="post-tag">SQL</span>
+            <span class="post-tag">DuckDB</span>
+            <span class="post-tag">Qualidade de Dados</span>
+            <span class="status">Em desenvolvimento</span>
+          </div>
+        </article>
+        <article class="project-item">
+          <h3><a href="https://github.com/igorinacioc/orcamento-portfolio/tree/master/synthetic_data">Gerador de Dados Sinteticos Hospitalares</a></h3>
+          <p>Dataset realista e anonimizado (LGPD-safe) simulando hospital real. 40 arquivos CSV gerados com Python + DuckDB para portfolio.</p>
+          <div class="project-meta">
+            <span class="post-tag">Python</span>
+            <span class="post-tag">DuckDB</span>
+            <span class="post-tag">Dados Sinteticos</span>
+            <span class="status completed">Concluido</span>
+          </div>
+        </article>
       </div>
     </section>
 
     <!-- TAB: Sobre -->
     <section id="tab-sobre" class="tab-content">
-      <p>Profissional de controladoria e finanças com 13 anos de carreira.
-      Escrevo sobre análise financeira, banking, tecnologia e aprendizado.</p>
+      <p>Profissional de controladoria e financas com 13 anos de carreira.
+      Escrevo sobre analise financeira, banking, tecnologia e aprendizado.</p>
 
-      <p>Este blog é o output público do meu
-      <a href="https://github.com/igorinacioc/second-brain">Segundo Cérebro</a>
-      — um sistema de conhecimento pessoal que conecta leitura, retenção e aplicação.</p>
+      <p>Este blog e o output publico do meu
+      <a href="https://github.com/igorinacioc/second-brain">Segundo Cerebro</a>
+      — um sistema de conhecimento pessoal que conecta leitura, retencao e aplicacao.</p>
 
       <h2>Como funciona</h2>
       <ol>
-        <li><strong>Leio</strong> artigos, livros e aulas sobre finanças, contabilidade, banking, tecnologia e carreira</li>
-        <li><strong>Processo</strong> no vault: crio páginas atômicas, conecto ideias, identifico padrões</li>
+        <li><strong>Leio</strong> artigos, livros e aulas sobre financas, contabilidade, banking, tecnologia e carreira</li>
+        <li><strong>Processo</strong> no vault: crio paginas atomicas, conecto ideias, identifico padroes</li>
         <li><strong>Escrevo</strong> sobre o que aprendi — esse texto vira um post aqui</li>
         <li><strong>Revisito</strong> via newsletter semanal com quiz e desafios</li>
       </ol>
 
       <h2>Temas</h2>
       <ul>
-        <li>Demonstrativos financeiros (DRE, Balanço, DFC)</li>
-        <li>Análise financeira (EBITDA, alavancagem, capital de giro)</li>
-        <li>Banking e risco (Basileia, crédito, mercado)</li>
-        <li>Tecnologia aplicada a finanças (AI, dados, automação)</li>
+        <li>Demonstrativos financeiros (DRE, Balanco, DFC)</li>
+        <li>Analise financeira (EBITDA, alavancagem, capital de giro)</li>
+        <li>Banking e risco (Basileia, credito, mercado)</li>
+        <li>Tecnologia aplicada a financas (AI, dados, automacao)</li>
         <li>Carreira e aprendizado</li>
       </ul>
     </section>
@@ -80,40 +111,20 @@
   </main>
 
   <footer>
-    <span class="theme-toggles">
-      <button data-theme="light">Claro</button>
-      <button data-theme="dark">Escuro</button>
-      <button data-theme="system">System</button>
-    </span>
-    <small>© 2026 Igor Inácio</small>
+    <small>&copy; 2026 Igor Inacio</small>
   </footer>
 
   <script>
-    // Theme
-    const theme = localStorage.getItem('theme') || 'system';
-    applyTheme(theme);
+    // Visual theme (claro / sepia / escuro)
+    const visualTheme = localStorage.getItem('visual-theme') || 'light';
+    document.documentElement.setAttribute('data-visual-theme', visualTheme);
+    document.getElementById('visual-theme').value = visualTheme;
 
-    document.querySelectorAll('[data-theme]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const t = btn.dataset.theme;
-        localStorage.setItem('theme', t);
-        applyTheme(t);
-        document.querySelectorAll('[data-theme]').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
+    document.getElementById('visual-theme').addEventListener('change', function() {
+      const t = this.value;
+      localStorage.setItem('visual-theme', t);
+      document.documentElement.setAttribute('data-visual-theme', t);
     });
-
-    function applyTheme(t) {
-      if (t === 'system') {
-        document.documentElement.setAttribute('data-theme',
-          window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      } else {
-        document.documentElement.setAttribute('data-theme', t);
-      }
-      document.querySelectorAll('[data-theme]').forEach(b => b.classList.remove('active'));
-      const active = document.querySelector(`[data-theme="${t}"]`);
-      if (active) active.classList.add('active');
-    }
 
     // Tabs
     document.querySelectorAll('.tab').forEach(tab => {
@@ -127,21 +138,23 @@
       });
     });
 
-    // Deep link: /sobre, /projetos
-    const path = window.location.pathname.replace('/', '');
+    // Deep link
+    var path = window.location.pathname.replace(/^\//, '');
     if (path === 'sobre' || path === 'projetos') {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      document.querySelector(`.tab[data-tab="${path}"]`)?.classList.add('active');
-      document.getElementById('tab-' + path)?.classList.add('active');
+      var tab = document.querySelector('.tab[data-tab="' + path + '"]');
+      if (tab) tab.classList.add('active');
+      var content = document.getElementById('tab-' + path);
+      if (content) content.classList.add('active');
     }
 
     // Search
-    document.getElementById('search-trigger').addEventListener('click', () => {
+    document.getElementById('search-trigger').addEventListener('click', function() {
       document.getElementById('search-overlay').classList.remove('hidden');
       document.getElementById('search-input').focus();
     });
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
         document.getElementById('search-overlay').classList.remove('hidden');
@@ -151,24 +164,21 @@
         document.getElementById('search-overlay').classList.add('hidden');
       }
     });
-    document.getElementById('search-overlay').addEventListener('click', (e) => {
+    document.getElementById('search-overlay').addEventListener('click', function(e) {
       if (e.target === e.currentTarget) e.currentTarget.classList.add('hidden');
     });
     document.getElementById('search-input').addEventListener('input', function() {
-      const q = this.value.toLowerCase();
-      const results = document.getElementById('search-results');
+      var q = this.value.toLowerCase();
+      var results = document.getElementById('search-results');
       if (q.length < 2) { results.innerHTML = ''; return; }
-      // Client-side search across post titles (populated by sync script)
-      const posts = document.querySelectorAll('.post-item');
-      const matches = [];
-      posts.forEach(p => {
-        const title = p.querySelector('.post-title')?.textContent || '';
-        if (title.toLowerCase().includes(q)) {
-          matches.push(p.cloneNode(true));
-        }
+      var posts = document.querySelectorAll('.post-item');
+      var matches = [];
+      posts.forEach(function(p) {
+        var title = (p.querySelector('.post-title') || {}).textContent || '';
+        if (title.toLowerCase().indexOf(q) !== -1) matches.push(p.cloneNode(true));
       });
       results.innerHTML = matches.length
-        ? matches.map(m => m.outerHTML).join('')
+        ? matches.map(function(m) { return m.outerHTML; }).join('')
         : '<p class="empty">Nada encontrado.</p>';
     });
   </script>
