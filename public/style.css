@@ -130,13 +130,24 @@ nav.tabs .tab.active {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+  white-space: nowrap;
+}
+
+.theme-toggles::before {
+  content: "Tema ";
+  padding: 0.25rem 0.4rem;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  display: inline-flex;
+  align-items: center;
 }
 
 .theme-toggles button {
   background: none;
   border: none;
-  padding: 0.2rem 0.5rem;
-  font-size: 0.7rem;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.72rem;
   cursor: pointer;
   color: var(--text-muted);
   font-family: var(--font);
@@ -145,6 +156,10 @@ nav.tabs .tab.active {
 
 .theme-toggles button:last-child {
   border-right: none;
+}
+
+.theme-toggles button:hover {
+  background: var(--bg-secondary);
 }
 
 .theme-toggles button.active {
