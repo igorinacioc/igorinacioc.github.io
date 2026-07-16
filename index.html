@@ -138,7 +138,12 @@
       });
     });
 
-    // Deep link
+    // Redirect from 404.html (GitHub Pages routing for /projetos, /sobre)
+    var redirect = sessionStorage.getItem('redirect');
+    if (redirect) {
+      sessionStorage.removeItem('redirect');
+      history.replaceState(null, '', redirect);
+    }
     var path = window.location.pathname.replace(/^\//, '');
     if (path === 'sobre' || path === 'projetos') {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
