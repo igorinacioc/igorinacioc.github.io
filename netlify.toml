@@ -1,0 +1,8 @@
+[build]
+  command = "echo 'Build complete'"
+  publish = "."
+
+[[redirects]]
+  from = "/posts/*"
+  to = "/posts/:splat.md"
+  status = 200
